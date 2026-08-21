@@ -15,7 +15,7 @@ It is an application-oriented implementation of the BiLCS algorithmic core, not 
 
 ## Status
 
-`v0.1.0-alpha` establishes the public project, canonical data model, and import validation. The roadmap records the next independently testable milestones.
+`v1.0.0` provides the complete Core, CLI, REST surface, snapshot store, and two reference adapters. The roadmap records the independently testable milestones that produced it.
 
 ## Quick start
 

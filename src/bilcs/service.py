@@ -13,4 +13,5 @@ def build_snapshot(graph: CanonicalBipartiteGraph, config: BuildConfig = BuildCo
     affinity = AffinityBuilder(config.affinity).build(graph).affinity
     output = train_dual_view(graph, affinity, config.encoder)
     neighbors, scores = build_exact_semantic_index(output.embeddings, budget=config.semantic_recall_budget)
-    return ModelSnapshot.create(graph, affinity, output.embeddings, output.assignments, neighbors, scores, config, output.diagnostics)
+    state = {name: tensor.numpy() for name, tensor in output.model_state.items()}
+    return ModelSnapshot.create(graph, affinity, output.embeddings, output.assignments, neighbors, scores, config, output.diagnostics, state)
