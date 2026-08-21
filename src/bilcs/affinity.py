@@ -18,8 +18,8 @@ def _inverse_positive(values: np.ndarray) -> np.ndarray:
     return result
 
 
-def _clean(matrix: sparse.spmatrix) -> sparse.csr_matrix:
-    value = matrix.tocsr().astype(np.float64, copy=False)
+def _clean(matrix: sparse.spmatrix | np.ndarray) -> sparse.csr_matrix:
+    value = sparse.csr_matrix(matrix, dtype=np.float64)
     value.sum_duplicates()
     value.eliminate_zeros()
     value.sort_indices()
