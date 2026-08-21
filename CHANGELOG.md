@@ -4,3 +4,4 @@
 
 - Created the public application-engine project structure.
 - Added canonical graph validation and generic CSV import.
+- Added sparse, stepwise Top-k structure-attribute affinity construction.
