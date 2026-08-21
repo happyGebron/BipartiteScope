@@ -1,0 +1,31 @@
+# BiLCS
+
+BiLCS is an explainable engine for community discovery and association analysis on attributed bipartite data. It converts a reusable offline model into fast, query-time U-side communities, V-side support evidence, and a trace of the structural decisions behind each result.
+
+It is an application-oriented implementation of the BiLCS algorithmic core, not a paper-reproduction or benchmark repository. The public product path accepts a generic `U - V - interaction - U attribute` schema and never requires ground-truth labels.
+
+## Core capabilities
+
+- Validate generic bipartite input and keep business IDs separate from matrix indexes.
+- Build a sparse structure-attribute higher-order affinity graph.
+- Train a dual-view cut-guided encoder offline and persist immutable model snapshots.
+- Search communities online with Bipartite-aware Local Conductance (BLC).
+- Explain accepted members and rank supporting V-side entities.
+- Use the same core from Python, CLI, REST, and domain adapters.
+
+## Status
+
+`v0.1.0-alpha` establishes the public project, canonical data model, and import validation. The roadmap records the next independently testable milestones.
+
+## Quick start
+
+```bash
+python -m pip install -e '.[train,api,dev]'
+bilcs validate --edges examples/edges.csv --features examples/features.csv
+```
+
+See [Getting started](docs/getting-started.md) and [Architecture](docs/architecture.md).
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE).

@@ -1,0 +1,6 @@
+# Changelog
+
+## 0.1.0-alpha - 2026-08-21
+
+- Created the public application-engine project structure.
+- Added canonical graph validation and generic CSV import.
