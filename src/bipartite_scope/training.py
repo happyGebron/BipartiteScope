@@ -16,7 +16,7 @@ def _torch() -> Any:
     try:
         import torch
     except ImportError as error:  # pragma: no cover - depends on optional extra
-        raise RuntimeError("Training requires the optional dependency: pip install 'bilcs[train]'") from error
+        raise RuntimeError("Training requires the optional dependency: pip install 'bipartite-scope[train]'") from error
     return torch
 
 

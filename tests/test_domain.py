@@ -1,6 +1,6 @@
 import unittest
 
-from bilcs.domain import CanonicalBipartiteGraph
+from bipartite_scope.domain import CanonicalBipartiteGraph
 
 
 class CanonicalGraphTests(unittest.TestCase):

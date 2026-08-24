@@ -3,8 +3,8 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bilcs"
-version = "1.0.0"
+name = "bipartite-scope"
+version = "0.2.0"
 description = "An explainable attributed bipartite community and association analysis engine."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -25,7 +25,7 @@ api = ["fastapi>=0.110", "uvicorn>=0.29"]
 dev = ["pytest>=8", "ruff>=0.5"]
 
 [project.scripts]
-bilcs = "bilcs.cli:main"
+bipartite-scope = "bipartite_scope.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

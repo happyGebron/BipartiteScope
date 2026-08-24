@@ -1,8 +1,8 @@
-# BiLCS
+# BipartiteScope
 
-BiLCS is an explainable engine for community discovery and association analysis on attributed bipartite data. It converts a reusable offline model into fast, query-time U-side communities, V-side support evidence, and a trace of the structural decisions behind each result.
+BipartiteScope is an explainable engine for community discovery and association analysis on attributed bipartite data. It converts a reusable offline model into fast, query-time U-side communities, V-side support evidence, and a trace of the structural decisions behind each result.
 
-It is an application-oriented implementation of the BiLCS algorithmic core, not a paper-reproduction or benchmark repository. The public product path accepts a generic `U - V - interaction - U attribute` schema and never requires ground-truth labels.
+It is an application-oriented engine built around the BiLCS algorithmic core, not a paper-reproduction or benchmark repository. The public product path accepts a generic `U - V - interaction - U attribute` schema and never requires ground-truth labels.
 
 ## Core capabilities
 
@@ -15,16 +15,20 @@ It is an application-oriented implementation of the BiLCS algorithmic core, not 
 
 ## Status
 
-`v1.0.0` provides the complete Core, CLI, REST surface, snapshot store, and two reference adapters. The roadmap records the independently testable milestones that produced it.
+`v0.2.0` introduces the workspace-first product workflow: TOML configuration, pre-build validation reports, JSON exports, and integrity-verified snapshots.
 
 ## Quick start
 
 ```bash
 python -m pip install -e '.[train,api,dev]'
-bilcs validate --edges examples/edges.csv --features examples/features.csv
+bipartite-scope init my-workspace
+# Place your own edges.csv and features.csv in my-workspace/data/.
+bipartite-scope validate --workspace my-workspace
+bipartite-scope build --workspace my-workspace
+bipartite-scope query --workspace my-workspace --entity YOUR_U_ID
 ```
 
-See [Getting started](docs/getting-started.md) and [Architecture](docs/architecture.md).
+No example dataset is bundled. See [Getting started](docs/getting-started.md), [CLI](docs/cli.md), and [Architecture](docs/architecture.md).
 
 ## License
 

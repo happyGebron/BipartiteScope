@@ -1,11 +1,12 @@
 import tempfile
 import unittest
 
-from bilcs.config import AffinityConfig, BuildConfig, EncoderConfig, QueryConfig
-from bilcs.domain import CanonicalBipartiteGraph
-from bilcs.query import QueryEngine
-from bilcs.service import build_snapshot
-from bilcs.snapshot import SnapshotStore
+from bipartite_scope.config import AffinityConfig, BuildConfig, EncoderConfig, QueryConfig
+from bipartite_scope.domain import CanonicalBipartiteGraph
+from bipartite_scope.query import QueryEngine
+from bipartite_scope.service import build_snapshot
+from bipartite_scope.snapshot import SnapshotStore
+from bipartite_scope.snapshot import SnapshotIntegrityError
 
 
 class SnapshotQueryTests(unittest.TestCase):
@@ -26,3 +27,12 @@ class SnapshotQueryTests(unittest.TestCase):
         self.assertIn("u1", result.members)
         self.assertTrue(result.support_entities)
         self.assertEqual(result.snapshot_id, snapshot.snapshot_id)
+
+    def test_snapshot_rejects_tampered_artifact(self) -> None:
+        snapshot = build_snapshot(self.graph, self.config)
+        with tempfile.TemporaryDirectory() as directory:
+            store = SnapshotStore(directory); target = store.save(snapshot)
+            with (target / "W.npz").open("ab") as handle:
+                handle.write(b"tampered")
+            with self.assertRaises(SnapshotIntegrityError):
+                store.load(snapshot.snapshot_id)

@@ -2,9 +2,9 @@ import unittest
 
 import numpy as np
 
-from bilcs.affinity import AffinityBuilder, rowwise_top_k
-from bilcs.config import AffinityConfig
-from bilcs.domain import CanonicalBipartiteGraph
+from bipartite_scope.affinity import AffinityBuilder, rowwise_top_k
+from bipartite_scope.config import AffinityConfig
+from bipartite_scope.domain import CanonicalBipartiteGraph
 
 
 class AffinityTests(unittest.TestCase):

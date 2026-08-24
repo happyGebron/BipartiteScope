@@ -1,6 +1,6 @@
 import unittest
 
-from bilcs.adapters import AcademicExplorerAdapter, RecommendationAdapter
+from bipartite_scope.adapters import AcademicExplorerAdapter, RecommendationAdapter
 
 
 class AdapterTests(unittest.TestCase):
