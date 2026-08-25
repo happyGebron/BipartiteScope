@@ -2,7 +2,7 @@
 
 BipartiteScope is an explainable engine for community discovery and association analysis on attributed bipartite data. It converts a reusable offline model into fast, query-time U-side communities, V-side support evidence, and a trace of the structural decisions behind each result.
 
-It is an application-oriented engine built around the BiLCS algorithmic core, not a paper-reproduction or benchmark repository. The public product path accepts a generic `U - V - interaction - U attribute` schema and never requires ground-truth labels.
+It is an application-oriented **BipartiteScope** engine, not a paper-reproduction or benchmark repository. The public product path accepts a generic `U - V - interaction - U attribute` schema and never requires ground-truth labels.
 
 ## Core capabilities
 
