@@ -26,7 +26,7 @@ def _add_workspace_argument(parser: argparse.ArgumentParser) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="bipartite-scope", description="BipartiteScope community and association analysis engine")
-    parser.add_argument("--version", action="version", version="BipartiteScope 0.2.0")
+    parser.add_argument("--version", action="version", version="BipartiteScope 1.0.0")
     commands = parser.add_subparsers(dest="command", required=True)
     init = commands.add_parser("init", help="create an empty workspace and TOML configuration")
     init.add_argument("workspace")

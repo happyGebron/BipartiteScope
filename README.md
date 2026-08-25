@@ -15,7 +15,7 @@ It is an application-oriented engine built around the BiLCS algorithmic core, no
 
 ## Status
 
-`v0.2.0` introduces the workspace-first product workflow: TOML configuration, pre-build validation reports, JSON exports, and integrity-verified snapshots.
+`v1.0.0` is the final first major release: workspace-first operation, TOML configuration, pre-build validation reports, JSON exports, and integrity-verified snapshots.
 
 ## Quick start
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bipartite-scope"
-version = "0.2.0"
+version = "1.0.0"
 description = "An explainable attributed bipartite community and association analysis engine."
 readme = "README.md"
 requires-python = ">=3.11"

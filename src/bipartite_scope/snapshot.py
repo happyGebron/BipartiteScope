@@ -87,7 +87,7 @@ class SnapshotStore:
             self._write_assets(temporary, snapshot)
             assets = {name: {"sha256": _sha256(temporary / name), "bytes": (temporary / name).stat().st_size} for name in self._ASSET_NAMES}
             manifest = {
-                "snapshot_id": snapshot.snapshot_id, "created_at": snapshot.created_at, "core_version": "0.2.0",
+                "snapshot_id": snapshot.snapshot_id, "created_at": snapshot.created_at, "core_version": "1.0.0",
                 "complete": True, "input_hash": _hash_graph(snapshot.graph), "u_ids": snapshot.graph.u_ids, "v_ids": snapshot.graph.v_ids,
                 "config": asdict(snapshot.config), "diagnostics": snapshot.diagnostics, "u_metadata": snapshot.graph.u_metadata,
                 "v_metadata": snapshot.graph.v_metadata, "assets": assets,

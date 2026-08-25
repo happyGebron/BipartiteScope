@@ -32,7 +32,7 @@ def create_app(root: str | Path = "artifacts") -> Any:
     database = sqlite3.connect(root / "metadata.sqlite3", check_same_thread=False)
     database.execute("CREATE TABLE IF NOT EXISTS snapshots (workspace TEXT, snapshot_id TEXT PRIMARY KEY, created_at TEXT)")
     database.commit()
-    app = FastAPI(title="BipartiteScope", version="0.2.0")
+    app = FastAPI(title="BipartiteScope", version="1.0.0")
 
     @app.get("/health")
     def health() -> dict[str, str]:
