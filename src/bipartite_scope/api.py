@@ -27,12 +27,12 @@ def create_app(root: str | Path = "artifacts") -> Any:
     try:
         from fastapi import FastAPI, HTTPException
     except ImportError as error:  # pragma: no cover - optional dependency
-        raise RuntimeError("REST API requires: pip install 'bilcs[api]'") from error
+        raise RuntimeError("REST API requires: pip install 'bipartite-scope[api]'") from error
     root = Path(root); root.mkdir(parents=True, exist_ok=True)
     database = sqlite3.connect(root / "metadata.sqlite3", check_same_thread=False)
     database.execute("CREATE TABLE IF NOT EXISTS snapshots (workspace TEXT, snapshot_id TEXT PRIMARY KEY, created_at TEXT)")
     database.commit()
-    app = FastAPI(title="BiLCS", version="1.0.0")
+    app = FastAPI(title="BipartiteScope", version="1.0.0")
 
     @app.get("/health")
     def health() -> dict[str, str]:

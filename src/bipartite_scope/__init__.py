@@ -1,4 +1,4 @@
-"""BiLCS: reusable attributed bipartite community analysis."""
+"""BipartiteScope: reusable attributed bipartite community analysis."""
 
 from .config import BuildConfig, QueryConfig
 from .domain import CanonicalBipartiteGraph

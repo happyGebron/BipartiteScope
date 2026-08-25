@@ -16,7 +16,7 @@ def _torch() -> Any:
     try:
         import torch
     except ImportError as error:  # pragma: no cover - depends on optional extra
-        raise RuntimeError("Training requires the optional dependency: pip install 'bilcs[train]'") from error
+        raise RuntimeError("Training requires the optional dependency: pip install 'bipartite-scope[train]'") from error
     return torch
 
 
@@ -92,7 +92,13 @@ def train_dual_view(
         volume = assignments.T @ (w_degree[:, None] * assignments)
         laplacian = volume - assignments.T @ torch.sparse.mm(w, assignments)
         eye = torch.eye(config.latent_groups, dtype=assignments.dtype)
-        sah = torch.trace(torch.linalg.solve(volume + 1e-8 * eye, laplacian)) / config.latent_groups
+        # Soft assignments can temporarily collapse a group, making the
+        # normalized-cut volume matrix singular in float32.  Scale the
+        # diagonal jitter to the current matrix rather than relying on a
+        # fixed value that may round away on newer PyTorch runtimes.
+        volume_scale = volume.diagonal().abs().mean().clamp_min(1.0)
+        jitter = 16.0 * torch.finfo(assignments.dtype).eps * volume_scale
+        sah = torch.trace(torch.linalg.solve(volume + jitter * eye, laplacian)) / config.latent_groups
         aux_degree = torch.sparse.sum(a, dim=0).to_dense()
         support = torch.sparse.mm(a.transpose(0, 1), assignments)
         weight = 1.0 / torch.log2(2.0 + aux_degree)
