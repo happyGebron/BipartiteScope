@@ -1,7 +1,79 @@
-"""BipartiteScope: reusable attributed bipartite community analysis."""
+from .core import (
+    AcademicExplorerAdapter,
+    AffinityBuilder,
+    AffinityConfig,
+    BuildConfig,
+    CanonicalBipartiteGraph,
+    CommunityResult,
+    EncoderConfig,
+    EvaluationConfig,
+    Event,
+    IncrementalConfig,
+    ModelSnapshot,
+    QueryConfig,
+    QueryEngine,
+    RecommendationAdapter,
+    RecommendationConfig,
+    build_snapshot,
+)
+from .interface import create_app
+from .recommendation import (
+    EvaluationResult,
+    RecommendationItem,
+    RecommendationResult,
+    UpdateResult,
+    evaluate,
+    recommend,
+    record_feedback,
+    update_snapshot,
+)
+from .storage import (
+    InputValidationError,
+    SnapshotIntegrityError,
+    SnapshotStore,
+    ValidationReport,
+    Workspace,
+    init_workspace,
+    load_events,
+    load_workspace,
+    normalize_event,
+)
 
-from .config import BuildConfig, QueryConfig
-from .domain import CanonicalBipartiteGraph
+__version__ = "2.0.0"
 
-__all__ = ["BuildConfig", "CanonicalBipartiteGraph", "QueryConfig"]
-__version__ = "1.0.0"
+__all__ = [
+    "AcademicExplorerAdapter",
+    "AffinityBuilder",
+    "AffinityConfig",
+    "BuildConfig",
+    "CanonicalBipartiteGraph",
+    "CommunityResult",
+    "EncoderConfig",
+    "EvaluationConfig",
+    "EvaluationResult",
+    "Event",
+    "IncrementalConfig",
+    "InputValidationError",
+    "ModelSnapshot",
+    "QueryConfig",
+    "QueryEngine",
+    "RecommendationAdapter",
+    "RecommendationConfig",
+    "RecommendationItem",
+    "RecommendationResult",
+    "SnapshotIntegrityError",
+    "SnapshotStore",
+    "UpdateResult",
+    "ValidationReport",
+    "Workspace",
+    "build_snapshot",
+    "create_app",
+    "evaluate",
+    "init_workspace",
+    "load_events",
+    "load_workspace",
+    "normalize_event",
+    "recommend",
+    "record_feedback",
+    "update_snapshot",
+]
