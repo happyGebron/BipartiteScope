@@ -1,34 +1,23 @@
 # BipartiteScope
 
-BipartiteScope is an explainable engine for community discovery and association analysis on attributed bipartite data. It converts a reusable offline model into fast, query-time U-side communities, V-side support evidence, and a trace of the structural decisions behind each result.
+BipartiteScope is an explainable, application-oriented engine for attributed bipartite graphs. V2.0.0 adds incremental graph and model updates, user-item recommendation, feedback ingestion, chronological offline evaluation, verified snapshot activation and rollback, an expanded CLI, a stable Python API, and a lightweight localhost FastAPI interface.
 
-It is an application-oriented **BipartiteScope** engine, not a paper-reproduction or benchmark repository. The public product path accepts a generic `U - V - interaction - U attribute` schema and never requires ground-truth labels.
-
-## Core capabilities
-
-- Validate generic bipartite input and keep business IDs separate from matrix indexes.
-- Build a sparse structure-attribute higher-order affinity graph.
-- Train a dual-view cut-guided encoder offline and persist immutable model snapshots.
-- Search communities online with Bipartite-aware Local Conductance (BLC).
-- Explain accepted members and rank supporting V-side entities.
-- Use the same core from Python, CLI, REST, and domain adapters.
-
-## Status
-
-`v1.0.0` is the final first major release: workspace-first operation, TOML configuration, pre-build validation reports, JSON exports, and integrity-verified snapshots.
+The project keeps binary graph incidence separate from weighted interaction data, preserves sparse deterministic core operations, and does not require labels, external database services, authentication, or bundled datasets.
 
 ## Quick start
 
 ```bash
 python -m pip install -e '.[train,api,dev]'
 bipartite-scope init my-workspace
-# Place your own edges.csv and features.csv in my-workspace/data/.
+# Add your own edges.csv and features.csv under my-workspace/data/.
 bipartite-scope validate --workspace my-workspace
 bipartite-scope build --workspace my-workspace
-bipartite-scope query --workspace my-workspace --entity YOUR_U_ID
+bipartite-scope query --workspace my-workspace --entity YOUR_USER_ID
 ```
 
-No example dataset is bundled. See [Getting started](docs/getting-started.md), [CLI](docs/cli.md), and [Architecture](docs/architecture.md).
+The initial build becomes active. Incremental updates create immutable candidates that must be evaluated, verified, and activated explicitly.
+
+See [DOCUMENTATION.md](DOCUMENTATION.md) for installation, schemas, configuration, Python, CLI, REST, algorithm, update, recommendation, evaluation, snapshot, migration, testing, and troubleshooting details.
 
 ## License
 

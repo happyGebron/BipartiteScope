@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.0 - 2026-09-03
+
+- Added idempotent CSV/JSONL event ingestion and append-only local event ledgers.
+- Added incremental graph updates, affected-neighborhood affinity replacement, full fallback, and whole-graph warm-start training.
+- Added explainable user-item recommendation, feedback collection, and chronological offline evaluation against two baselines.
+- Added candidate snapshot lineage, manual verification, activation, rollback, and V1 snapshot compatibility.
+- Expanded the CLI and localhost FastAPI interface for all V2 workflows.
+- Consolidated the package into five Python files and all detailed guidance into `DOCUMENTATION.md`.
+- Added repository checks for source layout, documentation layout, English-only tracked text, and absence of bundled datasets.
+
 ## 1.0.0 - 2026-08-25
 
 - Renamed the application product to BipartiteScope.
