@@ -1,11 +1,11 @@
-name: test
+name: quality
 
 on:
   push:
   pull_request:
 
 jobs:
-  unit:
+  verify:
     strategy:
       matrix:
         python-version: ["3.11", "3.12"]
@@ -15,5 +15,34 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - run: python -m pip install -e '.[train,dev]'
+      - run: python -m pip install -e '.[train,api,dev]'
+      - run: python -m ruff check .
+      - run: python -m py_compile src/bipartite_scope/*.py
       - run: python -m unittest discover -s tests -v
+      - run: python -m build
+      - run: python -m pip install --force-reinstall --no-deps dist/*.whl
+      - run: bipartite-scope --version && python -c "import bipartite_scope; assert bipartite_scope.__version__ == '2.0.0'"
+      - name: Enforce repository policies
+        run: |
+          test "$(find src/bipartite_scope -type f -name '*.py' | wc -l | tr -d ' ')" = "5"
+          test ! -d docs
+          test -f DOCUMENTATION.md
+          test "$(git ls-files '*DOCUMENTATION.md' | wc -l | tr -d ' ')" = "1"
+          test -z "$(git ls-files '*.csv' '*.jsonl' '*.ndjson')"
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          files = subprocess.check_output(["git", "ls-files"], text=True).splitlines()
+          offenders = []
+          for name in files:
+              path = Path(name)
+              try:
+                  text = path.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, IsADirectoryError):
+                  continue
+              if any("\u3400" <= character <= "\u9fff" for character in text):
+                  offenders.append(name)
+          if offenders:
+              raise SystemExit("Han characters found in: " + ", ".join(offenders))
+          PY

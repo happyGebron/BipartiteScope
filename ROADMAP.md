@@ -7,3 +7,7 @@
 - [x] M4: immutable snapshots and BLC online query with explanations.
 - [x] M5: CLI, REST API, adapters, and v0.1.0 core release.
 - [x] M6: workspace-first CLI, TOML configuration, input quality reports, and verified snapshots (v1.0.0 final release).
+- [x] M7: incremental updates, recommendation, feedback, evaluation, and snapshot promotion controls (v2.0.0).
+- [ ] V3: asynchronous local job execution, observability, and streaming-ready event boundaries.
+- [ ] V4: production backend services, access control, multi-workspace operations, and deployment hardening.
+- [ ] V5: complete frontend, backend integration, large-scale performance, and closed-loop model operations.
